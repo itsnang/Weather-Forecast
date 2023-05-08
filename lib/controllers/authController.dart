@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:to_do_list/utils/app_controll.dart';
 
 class AuthController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -8,6 +9,7 @@ class AuthController extends GetxController {
 
   @override
   void onInit() {
+    super.onInit();
     _firebaseUser.bindStream(_auth.authStateChanges());
   }
 
@@ -15,6 +17,7 @@ class AuthController extends GetxController {
     try {
       await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
+      Get.back();
     } catch (e) {
       Get.snackbar(' Error creating accouting ', e.toString());
     }
