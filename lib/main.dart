@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:to_do_list/controllers/bindings/authBinding.dart';
-import 'package:to_do_list/screens/login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:to_do_list/utils/app_controll.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       initialBinding: AuthBinding(),
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: const AppControll(),
     );
   }
 }

@@ -80,7 +80,7 @@ class LoginScreen extends GetWidget<AuthController> {
                 children: [
                   const Text("Don't have a Account?"),
                   TextButton(
-                    onPressed: () => Get.to(const SignUpScreen()),
+                    onPressed: () => Get.to(SignUpScreen()),
                     child: const Text(
                       'Sign Up',
                       style:
