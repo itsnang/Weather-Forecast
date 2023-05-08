@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:to_do_list/constants.dart';
+import 'package:to_do_list/screens/sign_up_screen.dart';
+import 'package:get/get.dart';
 
 import '../components/text_fiel_container.dart';
+import '../controllers/authController.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class LoginScreen extends GetWidget<AuthController> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +27,6 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(
                 height: 72,
               ),
-              // const Text(
-              //   'LOGIN',
-              //   style: TextStyle(
-              //     fontWeight: FontWeight.bold,
-              //   ),
-              // ),
-              // const SizedBox(
-              //   height: 16,
-              // ),
               SvgPicture.asset(
                 "assets/login.svg",
                 height: size.height * 0.30,
@@ -37,19 +34,21 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(
                 height: 24,
               ),
-              const TextFielContainer(
+              TextFielContainer(
                 child: TextField(
-                  decoration: InputDecoration(
+                  controller: emailController,
+                  decoration: const InputDecoration(
                       hintText: "Your Email", border: InputBorder.none),
                 ),
               ),
               const SizedBox(
                 height: 16,
               ),
-              const TextFielContainer(
+              TextFielContainer(
                 child: TextField(
+                  controller: passwordController,
                   obscureText: true,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       hintText: "Password", border: InputBorder.none),
                 ),
               ),
@@ -57,15 +56,21 @@ class LoginScreen extends StatelessWidget {
                 height: 16,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  controller.login(
+                      emailController.text, passwordController.text);
+                },
                 style: ElevatedButton.styleFrom(
                   elevation: 0,
-                  minimumSize: Size.fromHeight(50),
+                  minimumSize: const Size.fromHeight(50),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                child: const Text('Log in'),
+                child: const Text(
+                  'Log in',
+                  style: TextStyle(fontSize: 16),
+                ),
               ),
               const SizedBox(
                 height: 16,
@@ -73,14 +78,15 @@ class LoginScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Don't have a Account?"),
+                  const Text("Don't have a Account?"),
                   TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Sign Up',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 15),
-                      ))
+                    onPressed: () => Get.to(SignUpScreen()),
+                    child: const Text(
+                      'Sign Up',
+                      style:
+                          TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+                    ),
+                  )
                 ],
               )
             ],
