@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:to_do_list/constants.dart';
+import 'package:to_do_list/style_constants.dart';
 import 'package:to_do_list/controllers/authController.dart';
 
 import '../components/text_fiel_container.dart';
@@ -18,7 +18,6 @@ class SignUpScreen extends GetWidget<AuthController> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -35,69 +34,68 @@ class SignUpScreen extends GetWidget<AuthController> {
         padding: const EdgeInsets.symmetric(horizontal: 38, vertical: 2),
         width: double.infinity,
         height: MediaQuery.of(context).size.height,
-        child: Column(
-          children: <Widget>[
-            const SizedBox(
-              height: 72,
-            ),
-            SvgPicture.asset(
-              "assets/signup.svg",
-              height: size.height * 0.30,
-            ),
-            const SizedBox(
-              height: 24,
-            ),
-            // TextFielContainer(
-            //   child: TextField(
-            //     controller: nameController,
-            //     decoration: const InputDecoration(
-            //         hintText: "Your Name", border: InputBorder.none),
-            //   ),
-            // ),
-            const SizedBox(
-              height: 24,
-            ),
-            TextFielContainer(
-              child: TextField(
-                controller: emailController,
-                decoration: const InputDecoration(
-                    hintText: "Your Email", border: InputBorder.none),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              SvgPicture.asset(
+                "assets/signup.svg",
+                height: size.height * 0.30,
               ),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            TextFielContainer(
-              child: TextField(
-                controller: passwordController,
-                obscureText: true,
-                decoration: const InputDecoration(
-                    hintText: "Password", border: InputBorder.none),
+              const SizedBox(
+                height: 14,
               ),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                controller.createUser(
-                    // nameController.text,
-                    emailController.text,
-                    passwordController.text);
-              },
-              style: ElevatedButton.styleFrom(
-                elevation: 0,
-                minimumSize: const Size.fromHeight(50),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+              // TextFielContainer(
+              //   child: TextField(
+              //     controller: nameController,
+              //     decoration: const InputDecoration(
+              //         hintText: "Your Name", border: InputBorder.none),
+              //   ),
+              // ),
+              // const SizedBox(
+              //   height: 24,
+              // ),
+              TextFielContainer(
+                child: TextField(
+                  controller: emailController,
+                  decoration: InputDecoration(
+                      hintText: "your_email".tr, border: InputBorder.none),
                 ),
               ),
-              child: const Text(
-                'Sign Up',
-                style: TextStyle(fontSize: 16),
+              const SizedBox(
+                height: 16,
               ),
-            ),
-          ],
+              TextFielContainer(
+                child: TextField(
+                  controller: passwordController,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                      hintText: "password".tr, border: InputBorder.none),
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  controller.createUser(
+                      // nameController.text,
+                      emailController.text,
+                      passwordController.text);
+                },
+                style: ElevatedButton.styleFrom(
+                  elevation: 0,
+                  minimumSize: const Size.fromHeight(50),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+                child: Text(
+                  'sign_up'.tr,
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
