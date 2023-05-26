@@ -5,17 +5,18 @@ import 'package:to_do_list/controllers/authController.dart';
 import '../screens/home_screen.dart';
 import '../screens/login_screen.dart';
 
-class AppControll extends GetWidget<AuthController> {
-  const AppControll({super.key});
+class AppControll extends StatelessWidget {
+  final AuthController autCtrl = Get.put(AuthController());
+  AppControll({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () {
-        return (Get.find<AuthController>().user != null
-            ? const HomeScreen()
-            : LoginScreen());
-      },
-    );
+    return Obx(() {
+      if (autCtrl.isLogin == true) {
+        return HomeScreen();
+      } else {
+        return LoginScreen();
+      }
+    });
   }
 }
